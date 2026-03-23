@@ -229,7 +229,7 @@ function JsonTreeView({ data }: { data: unknown }) {
   const entries = Object.entries(data as Record<string, unknown>)
 
   return (
-    <div className="p-3 font-mono text-sm overflow-auto">
+    <div className="p-3 font-mono text-sm overflow-auto" dir="ltr">
       <div className="text-muted-foreground">{isArray ? '[' : '{'}</div>
       {entries.map(([key, val], idx) => (
         <JsonTreeNode
@@ -254,6 +254,7 @@ function LineNumbers({ count }: { count: number }) {
   }
   return (
     <div
+      dir="ltr"
       className="select-none text-right pr-3 py-3 text-muted-foreground/50 text-xs font-mono leading-[1.625rem] border-r border-border/50 min-w-[3rem]"
       aria-hidden
     >
@@ -492,7 +493,7 @@ export function ToolPage() {
 
         {/* Error Bar */}
         {error && (
-          <div className="mb-4 flex items-center gap-2 rounded-lg border border-red-300 bg-red-50 px-4 py-2.5 text-red-800 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
+          <div dir="ltr" className="mb-4 flex items-center gap-2 rounded-lg border border-red-300 bg-red-50 px-4 py-2.5 text-red-800 dark:border-red-800 dark:bg-red-950/50 dark:text-red-300">
             <AlertCircle className="size-4 shrink-0" aria-hidden />
             <p className="text-sm font-medium">
               {error.line !== undefined && error.column !== undefined
@@ -526,6 +527,7 @@ export function ToolPage() {
               <textarea
                 ref={inputRef}
                 id="json-input"
+                dir="ltr"
                 value={input}
                 onChange={e => {
                   setInput(e.target.value)
@@ -536,7 +538,7 @@ export function ToolPage() {
                 }}
                 placeholder={t('tool.input.placeholder')}
                 className={cn(
-                  'flex-1 resize-none bg-transparent p-3 font-mono text-sm leading-[1.625rem] outline-none placeholder:text-muted-foreground/40',
+                  'flex-1 resize-none bg-transparent p-3 font-mono text-sm leading-[1.625rem] outline-none placeholder:text-muted-foreground/40 text-left',
                   error && 'text-red-600 dark:text-red-400'
                 )}
                 spellCheck={false}
@@ -610,8 +612,9 @@ export function ToolPage() {
                   {output && <LineNumbers count={outputLineCount} />}
                   <textarea
                     readOnly
+                    dir="ltr"
                     value={output}
-                    className="flex-1 resize-none bg-transparent p-3 font-mono text-sm leading-[1.625rem] outline-none text-foreground placeholder:text-muted-foreground/40"
+                    className="flex-1 resize-none bg-transparent p-3 font-mono text-sm leading-[1.625rem] outline-none text-foreground placeholder:text-muted-foreground/40 text-left"
                     placeholder={t('tool.output.label')}
                     spellCheck={false}
                   />
