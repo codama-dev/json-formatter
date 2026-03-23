@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
  */
 const FREE_TOOLS = [
   { name: 'QR Code Generator', url: 'https://free-qr-code.codama.dev/' },
+  { name: 'Base64 Encoder & Decoder', url: 'https://free-base64.codama.dev/' },
 ]
 
 export function PageFooter() {
